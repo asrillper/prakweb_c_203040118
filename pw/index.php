@@ -22,7 +22,7 @@ if (isset($_POST['cari'])) {
 
 <body>
 
-  <h3>Daftar Buku</h3>
+  <h3>Daftar Buku Best Seller</h3>
 
   <a href="tambah.php">Tambah Data Buku</a>
   <br><br>
