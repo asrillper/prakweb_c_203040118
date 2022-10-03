@@ -1,73 +1,86 @@
-<?php error_reporting(0); ?>
 <?php
+//koneksi
+require './php/functions.php';
 
-require 'functions.php';
-$buku = query("SELECT * FROM buku");
+//isi tabel
+$buku = query('SELECT * FROM buku');
 
-// ketika tombol cari diklik
+//ketika tombol cari di klik
 if (isset($_POST['cari'])) {
   $buku = cari($_POST['keyword']);
 }
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daftar Buku</title>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buku Best Seller!</title>
 </head>
 
 <body>
 
-  <h3>Daftar Buku Best Seller</h3>
+  <div class="container">
 
-  <a href="tambah.php">Tambah Data Buku</a>
-  <br><br>
+    <h2 class="center">Daftar Buku Best Seller</h2>
+    <form action="" method="POST">
+      <input type="text" name="keyword" size="30" placeholder="Masukkan Keywoard Pencarian.." autocomplete="off" autofocus>
+      <button type="submit" name="cari" class="btn blue darken-1">Cari!</button>
+    </form>
+    <br>
 
-  <form action="" method="POST">
-    <input type="text" name="keyword" size="40" placeholder="masukkan keyword pencarian.." autocomplete="off" autofocus>
-    <button type="submit" name="cari">Cari!</button>
-  </form>
-  <br>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Cover</th>
+          <th>Judul</th>
+          <th>Pengarang</th>
+          <th>Penerbit</th>
+          <th>Tanggal Rilis</th>
+          <th class="center">Opsi</th>
+        </tr>
+      </thead>
+      <?php foreach ($buku as $book) : ?>
+        <tbody>
+          <tr>
+            <td><?= $book["id_buku"]  ?></td>
+            <td> <img src="assets/img/<?= $book["gambar"] ?>" alt="" width="100px"></td>
+            <td><?= $book["judul"]  ?></td>
+            <td><?= $book["penulis"]  ?></td>
+            <td><?= $book["penerbit"]  ?></td>
+            <td><?= $book["tahun"]  ?></td>
+            <td>
+              <a href="php/ubah.php?id=<?= $book['id_buku'] ?>" class="waves-effect waves-light btn green lighten-1 center"><i class="material-icons left">create</i>Ubah</a>
+              <a href="php/hapus.php?id=<?= $book['id_buku'] ?>" onclick="return confirm('Delete the data?')" class="waves-effect waves-light btn red darker-2"><i class="material-icons left">delete</i>Hapus</a>
 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      <th>#</th>
-      <th>Gambar</th>
-      <th>Judul</th>
-      <th>Penulis</th>
-      <th>Penerbit</th>
-      <th>Tanggal Rilis</th>
-      <th>Aksi</th>
-    </tr>
 
-    <?php if (empty($buku)) : ?>
-      <tr>
-        <td colspan="4">
-          <p style="color: red; font-style: italic;">data buku tidak ditemukan!</p>
-        </td>
-      </tr>
-    <?php endif; ?>
+            </td>
+          </tr>
 
-    <?php $i = 1;
-    foreach ($buku as $m) : ?>
-      <tr>
-        <td><?= $i++; ?></td>
-        <td><img src="img/<?= $m['gambar']; ?>" width="60"></td>
-        <td><?= $m['judul']; ?></td>
-        <td><?= $m['penulis']; ?></td>
-        <td><?= $m['penerbit']; ?></td>
-        <td><?= $m['tahun']; ?></td>
-        <td>
-          <a href="detail.php?id=<?= $m['id']; ?>">Lihat Detail</a>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </table>
+        </tbody>
+      <?php endforeach; ?>
+    </table>
+    
+    <br>
+    <div class="button center">
+      <a href="php/tambah.php" class="waves-effect waves-light btn pink lighten-3 "><i class="material-icons left">add</i>Tambah Buku</a>
+    </div>
+    <br>
 
+  </div>
+
+
+
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 
 </html>
