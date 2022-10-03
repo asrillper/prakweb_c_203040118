@@ -66,10 +66,10 @@ if (isset($_POST['ubah'])) {
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" name="cover" id="cover" value="<?= $book['gambar']; ?>">
                 </div>
-                <img src="img/<?= $book['gambar'] ?>" style="display: block;" width="120px" class="img-preview">
+                <img src="assets/img/<?= $book['gambar'] ?>" style="display: block;" width="120px" class="img-preview">
             </div>
             <button type="submit" name="ubah" class="waves-effect waves-light btn blue lighten-3">Change Data</button>
-            <a href="../index.php" class="waves-effect waves-light btn blue lighten-3"><i class="material-icons left">arrow_back</i>Back</a>
+            <a href="../../index.php" class="waves-effect waves-light btn blue lighten-3"><i class="material-icons left">arrow_back</i>Back</a>
 
 
         </form>

@@ -19,9 +19,10 @@ if (isset($_POST['cari'])) {
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
-
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
   <title>Buku Best Seller!</title>
 </head>
 
@@ -32,7 +33,7 @@ if (isset($_POST['cari'])) {
     <h2 class="center">Daftar Buku Best Seller</h2>
     <form action="" method="POST">
       <input type="text" name="keyword" size="30" placeholder="Masukkan Keywoard Pencarian.." autocomplete="off" autofocus>
-      <button type="submit" name="cari" class="btn blue darken-1">Cari!</button>
+      <button type="submit" name="cari" class="btn grey darken-1">Cari!</button>
     </form>
     <br>
 
@@ -42,7 +43,7 @@ if (isset($_POST['cari'])) {
           <th>No</th>
           <th>Cover</th>
           <th>Judul</th>
-          <th>Pengarang</th>
+          <th>Penulis</th>
           <th>Penerbit</th>
           <th>Tanggal Rilis</th>
           <th class="center">Opsi</th>
